@@ -16,21 +16,24 @@ public class gradeArray {
         System.out.println("You will have to enter the grades for " + gradeArray.length + " students in total.");
         int i;
         for (i = 0; i < gradeArray.length; i++) {
-            byte grade;
             int studentNo = i + 1;
-            do {
-                System.out.print("Please enter the grade for Student " + studentNo + ": ");
-                while (!input.hasNextByte()) {
-                    System.out.print("That's not a number! Enter again: ");
-                    input.next();
-                }
-                grade = input.nextByte();
-                if (grade < 0 || grade > 10)
-                    System.out.print("Grade must be between 0 and 10. Try again. \n ");
-            } while (grade < 0 || grade > 10);
+            System.out.print("Please enter the grade for Student " + studentNo + ": ");
+            checkValidity(input);
+            byte grade = input.nextByte();
+            if (grade < 0 || grade > 10) {
+                System.out.print("Grade must be between 0 and 10. Try again: ");
+                input.next();
+            }
             gradeArray[i] = grade;
         }
 
+    }
+
+    static void checkValidity(Scanner input) {
+        while (!input.hasNextByte()) {
+            System.out.print("That's not a number! Try again: ");
+            input.next();
+        }
     }
 
     static void failedOrA(byte[] gradeArray) {

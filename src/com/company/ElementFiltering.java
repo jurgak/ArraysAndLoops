@@ -14,26 +14,31 @@ public class ElementFiltering {
         odd(newArray);
         duplicates(newArray);
         printEverySecond(newArray);
-        averageValue(newArray);
+        System.out.println("\n Average value is: " + averageValue(newArray));
+        smallerThanAverage(newArray);
     }
 
-    static void averageValue (int[] newArray) {
+    static double averageValue(int[] newArray) {
         int sum = 0;
-        for (int i = 0; i < newArray.length; i++) {
-            sum = sum + newArray[i];
+        for (int number : newArray) {
+            sum = sum + number;
         }
         double average = sum / newArray.length;
-        System.out.print("\n Average value is: " + average);
-        int counter = 0;
-        for (int i = 0; i < newArray.length; i++){
-            if (newArray[i] < average) {
-                counter ++;
-            }
-        }
-        System.out.print("\n Number of elements that are smaller than average value: " + counter);
+        return average;
     }
 
-    static void printEverySecond (int[] newArray) {
+    static void smallerThanAverage(int[] newArray) {
+        double average = averageValue(newArray);
+        int counter = 0;
+        for (int number : newArray) {
+            if (number < average) {
+                counter++;
+            }
+        }
+        System.out.print(" Number of elements that are smaller than average value: " + counter);
+    }
+
+    static void printEverySecond(int[] newArray) {
         System.out.print("\n Every second element: ");
         for (int i = 0; i < newArray.length; i = i + 2) {
             System.out.print(" " + newArray[i] + " ");
@@ -42,9 +47,9 @@ public class ElementFiltering {
 
     static void negative(int[] newArray) {
         System.out.print("\n Negative elements are: ");
-        for (int i = 0; i < newArray.length; i++) {
-            if (newArray[i] < 0) {
-                System.out.print(" " + newArray[i] + " ");
+        for (int number : newArray) {
+            if (number < 0) {
+                System.out.print(" " + number + " ");
             }
         }
     }
@@ -52,21 +57,21 @@ public class ElementFiltering {
     static void odd(int[] newArray) {
         int counter = 0;
         System.out.print("\n Odd elements are: ");
-        for (int i = 0; i < newArray.length; i++) {
-            if (newArray[i] % 2 != 0) {
-                System.out.print(" " + newArray[i] + " ");
-                counter ++;
+        for (int number : newArray) {
+            if (number % 2 != 0) {
+                System.out.print(" " + number + " ");
+                counter++;
             }
         }
         System.out.print("\n Count of odd elements: " + counter);
     }
 
     static void duplicates(int[] newArray) {
-        Set<Integer> set = new HashSet<Integer>();
+        Set<Integer> set = new HashSet<>();
         int counter = 0;
         for (Integer value : newArray) {
             if (!set.add(value)) {
-                counter ++;
+                counter++;
             }
         }
         System.out.print("\n Count of elements with duplicate values: " + counter);
